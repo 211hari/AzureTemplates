@@ -63,10 +63,10 @@
         },
         "platformFaultDomainCount": {
             "type": "int",
-            "defaultValue": "1",
+            "defaultValue": 1,
             "allowedValues": [
-                "1",
-                "2"
+                1,
+                2
             ],
             "metadata": {
                 "description": "The number of fault domains to use."
@@ -74,10 +74,10 @@
         },
         "platformUpdateDomainCount": {
             "type": "int",
-            "defaultValue": "1",
+            "defaultValue": 1,
             "allowedValues": [
-                "1",
-                "2"
+                1,
+                2
             ],
             "metadata": {
                 "description": "The number of update domains to use."
