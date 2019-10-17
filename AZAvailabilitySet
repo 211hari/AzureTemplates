@@ -1,0 +1,114 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceName": {
+            "type": "string",
+            "metadata": {
+                "description": "The full resource name of the Availability set resource."
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "East US",
+            "allowedValues": [
+                "East US",
+                "East US 2",
+                "West US",
+                "Central US",
+                "North Central US",
+                "South Central US",
+                "North Europe",
+                "West Europe",
+                "East Asia",
+                "Southeast Asia",
+                "Japan East",
+                "Japan West",
+                "Australia East",
+                "Australia Southeast",
+                "Australia Central",
+                "Brazil South",
+                "South India",
+                "Central India",
+                "West India",
+                "Canada Central",
+                "Canada East",
+                "West US 2",
+                "West Central US",
+                "UK South",
+                "UK West",
+                "Korea Central",
+                "Korea South",
+                "France Central",
+                "South Africa North",
+                "UAE North",
+                "UK North",
+                "UK South 2",
+                "France South",
+                "Australia Central 2",
+                "South Africa West",
+                "UAE Central",
+                "Switzerland North",
+                "Switzerland West",
+                "Germany North",
+                "Germany West Central",
+                "Norway East",
+                "Norway West",
+                "East US 2 EUAP",
+                "Central US EUAP"
+            ],
+            "metadata": {
+                "description": "The location of the Availability set resource."
+            }
+        },
+        "platformFaultDomainCount": {
+            "type": "int",
+            "defaultValue": "1",
+            "allowedValues": [
+                "1",
+                "2"
+            ],
+            "metadata": {
+                "description": "The number of fault domains to use."
+            }
+        },
+        "platformUpdateDomainCount": {
+            "type": "int",
+            "defaultValue": "1",
+            "allowedValues": [
+                "1",
+                "2"
+            ],
+            "metadata": {
+                "description": "The number of update domains to use."
+            }
+        },
+        "skuName": {
+            "type": "string",
+            "defaultValue": "Aligned",
+            "allowedValues": [
+                    "Classic",
+                    "Aligned"
+            ],
+            "metadata": {
+                "description": "Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'."
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "name": "[parameters('resourceName')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "[parameters('location')]",
+            "properties": {
+                "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
+                "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
+            },
+            "sku": {
+                "name": "[parameters('skuName')]"
+            },
+            "tags": {}
+        }
+    ]
+}
